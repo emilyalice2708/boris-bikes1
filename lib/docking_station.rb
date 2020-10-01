@@ -9,6 +9,7 @@ class DockingStation
   end
 
   def dock(bike)
+    raise 'Error: bike already docked here.' if @bike
     @bike = bike
   end
 end

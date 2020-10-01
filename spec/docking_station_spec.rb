@@ -14,8 +14,14 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
-  it 'raises error if no bikes docked' do
+  it 'raises error if release_bike called while no bikes docked' do
     expect { subject.release_bike }.to raise_error 'Error: no bikes docked.'
+  end
+
+  it 'raises error if .dock called when bike already docked' do
+    station = DockingStation.new
+    station.dock(Bike.new)
+    expect { station.dock(Bike.new) }.to raise_error 'Error: bike already docked here.'
   end
 
   it 'docks bikes' do
